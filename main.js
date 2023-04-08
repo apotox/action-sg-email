@@ -6,7 +6,7 @@ async function sendMail() {
   const subject = core.getInput("subject", { required: true });
   const from = core.getInput("from", { required: true });
   const to = core.getInput("to", { required: true });
-  const text = core.getInput("text", { required: false });
+  const text = core.getInput("text", { required: true });
 
   sgMail.setApiKey(sgApiKey)
 
