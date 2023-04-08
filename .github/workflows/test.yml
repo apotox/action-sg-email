@@ -28,6 +28,6 @@ jobs:
           sgApiKey: ${{secrets.SG_API_KEY}}
           subject: ${{matrix.subject}}
           text: ${{matrix.text}}
-          to: '::add-mask::${{github.event.pusher.email}}'
+          to: '${{github.event.pusher.email}}'
           from: ${{secrets.FROM_ADDRESS}}
 
