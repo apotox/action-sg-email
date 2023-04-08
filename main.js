@@ -1,7 +1,4 @@
 const core = require("@actions/core");
-const glob = require("@actions/glob");
-const fs = require("fs/promises");
-const path = require("path");
 const sgMail = require("@sendgrid/mail");
 
 async function sendMail() {
