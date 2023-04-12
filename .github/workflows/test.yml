@@ -22,11 +22,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: hide sender
+      - name: get sender
         id: sender
-        run: | 
-          echo "::add-mask::${{github.event.pusher.email}}"
-          echo "::set-output name=pusher::${{github.event.pusher.email}}"
+        run: echo "::add-mask::${{github.event.pusher.email}}" 
+
+      - name: pusher
+        id: pusher
+        run: echo "::set-output name=pusher::${{github.event.pusher.email}}"
       - name: Send mail
         uses: ./
         with:
