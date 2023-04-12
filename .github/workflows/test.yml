@@ -22,18 +22,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: get sender
-        id: sender
-        run: echo "::add-mask::${{github.event.pusher.email}}" 
-
-      - name: pusher
-        id: pusher
-        run: echo "::set-output name=pusher::${{github.event.pusher.email}}"
       - name: Send mail
         uses: ./
         with:
           sgApiKey: ${{secrets.SG_API_KEY}}
           subject: ${{matrix.subject}}
           text: ${{matrix.text}}
-          to: '${{steps.sender.outputs.pusher}}'
+          to: ${{github.event.pusher.email}}
           from: ${{secrets.FROM_ADDRESS}}
