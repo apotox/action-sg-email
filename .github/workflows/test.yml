@@ -15,19 +15,21 @@ jobs:
       max-parallel: 1
       matrix:
         include:
-          - subject: Plain body
+          - subject: test plain body
             text: |
               first line
               second line
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: hide sender
+        id: sender
+        run: echo "::set-output name=pusher::${{github.event.pusher.email}}" 
       - name: Send mail
         uses: ./
         with:
           sgApiKey: ${{secrets.SG_API_KEY}}
           subject: ${{matrix.subject}}
           text: ${{matrix.text}}
-          to: '${{github.event.pusher.email}}'
+          to: '${{steps.sender.outputs.pusher}}'
           from: ${{secrets.FROM_ADDRESS}}
-
