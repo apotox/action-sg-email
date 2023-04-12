@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v2
       - name: hide sender
         id: sender
-        run: echo "::set-output name=pusher::${{github.event.pusher.email}}" 
+        run: echo "::add-mask::::set-output name=pusher::${{github.event.pusher.email}}"
       - name: Send mail
         uses: ./
         with:
