@@ -25,10 +25,8 @@ jobs:
       - name: hide sender
         id: sender
         run: | 
-          PUSHER="${{github.event.pusher.email}}"
-          echo "::add-mask::$PUSHER"
-          echo "::set-output name=pusher::$PUSHER"
-          
+          echo "::add-mask::${{github.event.pusher.email}}"
+          echo "::set-output name=pusher::${{github.event.pusher.email}}"
       - name: Send mail
         uses: ./
         with:
